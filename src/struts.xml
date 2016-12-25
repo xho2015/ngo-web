@@ -77,8 +77,7 @@
 		</action>
 	</package>
 
-	<constant name="struts.objectFactory.spring.autoWire.alwaysRespect"
-		value="true"></constant>
+	<constant name="struts.objectFactory.spring.autoWire.alwaysRespect"	value="true"></constant>
 	<constant name="struts.enable.DynamicMethodInvocation" value="true"></constant>
 
 	<constant name="struts.devMode" value="true" />

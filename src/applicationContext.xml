@@ -28,16 +28,7 @@
 		<property name="username" value="root" />
 		<property name="password" value="qwer1234" />
 	</bean>
-  <!-- 
-	 <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
-		destroy-method="close">
-		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
-		<property name="url"
-			value="jdbc:oracle:thin:@192.168.0.10:1521:xe" />
-		<property name="username" value="bob" />
-		<property name="password" value="bob" />
-	</bean>
--->		 
+		 
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
@@ -52,8 +43,9 @@
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</prop>
-				<!--<prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>-->
-				<prop key="hibernate.show_sql">false</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">false</prop>
+				 
 				<!--DBs schema utility-->
 				<prop key="hibernate.hbm2ddl.auto">create</prop>
 				 	 			
