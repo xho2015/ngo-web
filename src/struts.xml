@@ -5,34 +5,31 @@
 
 <struts>
 
-	<package name="admin" namespace="/admin" extends="struts-default">
-		<!-- XHO: package level Interceptors -->
+	<!-- HXY:base package -->
+	<package name="base" namespace="/" extends="struts-default">
 		<interceptors>
-			<interceptor name="myLogger" class="org.ngo.web.common.LoggerInterceptor"/> 
-			<interceptor-stack name="stack2">
+			<!-- HXY: my defined interceptor -->
+			<interceptor name="myInterceptor" class="org.ngo.web.common.MyInterceptor" />
+			
+			<interceptor-stack name="stackbase">
 				<interceptor-ref name="timer" />
-				<interceptor-ref name="myLogger" />
+				<interceptor-ref name="logger" />
 				<interceptor-ref name="defaultStack" />
 			</interceptor-stack>
 		</interceptors>
-		<default-interceptor-ref name="stack2" />
+
+	</package>
+
+	<package name="pkg-admin" namespace="/admin" extends="base">
+		
+		<default-interceptor-ref name="stackbase" />
 		<action name="Unlock" class="org.ngo.web.front.action.admin.UnlockUserAction">
 			<result name="SUCCESS">/admin/unlock.jsp</result>
 		</action>
 	</package>
-	
-	<package name="module1" namespace="/user" extends="struts-default">
-		<!-- XHO: package level Interceptors -->
-		<interceptors>
-			<interceptor name="myLogger" class="org.ngo.web.common.LoggerInterceptor"/> 
-			
-			<interceptor-stack name="stack1">
-				<interceptor-ref name="timer" />
-				<interceptor-ref name="myLogger" />
-				<interceptor-ref name="defaultStack" />
-			</interceptor-stack>
-		</interceptors>
-		<default-interceptor-ref name="stack1" />
+
+	<package name="pkg-user" namespace="/user" extends="base">
+		<default-interceptor-ref name="stackbase" />
 
 		<action name="Welcome">
 			<!-- XHO: here you can use relative path since we are under /user name-space -->
@@ -51,54 +48,41 @@
 		</action>
 
 		<action name="Create" class="com.tutorial.front.action.CreateUserAction">
-			<result name="input">/user/create.jsp</result>		
-		</action>
-	</package>
-	
-	
-	<package name="module3" namespace="/account" extends="struts-default">
-		<!-- XHO: package level Interceptors -->
-		<interceptors>
-			
-			<interceptor-stack name="stack3">
-				<interceptor-ref name="timer" />
-				<interceptor-ref name="defaultStack" />
-			</interceptor-stack>
-		</interceptors>
-		<default-interceptor-ref name="stack3" />
-		<action name="Decrease" class="org.ngo.web.front.action.AccountAction" method="executeDecr">
-			<!--XHO: no result here, just void is return  -->
-		</action>
-		<action name="Increase" class="org.ngo.web.front.action.AccountAction" method="executeIncr">
-		</action>
-		<action name="Create" class="org.ngo.web.front.action.AccountAction" method="executeCreate">
-		</action>
-	</package>
-	
-	<package name="base" namespace="/" extends="struts-default">
-		<interceptors>
-			<interceptor-stack name="stackbase">
-				<interceptor-ref name="timer" />
-				<interceptor-ref name="logger" />
-				<interceptor-ref name="defaultStack" />
-			</interceptor-stack>
-		</interceptors>
-		
-	</package>
-	
-	<package name="module4" namespace="/category" extends="base" >
-		
-		<default-interceptor-ref name="stackbase" />
-		<!-- dynamic method invocation in action -->
-		<action name="dynamic_*" class="org.ngo.web.front.action.DynamicAction" method="{1}">
+			<result name="input">/user/create.jsp</result>
 		</action>
 	</package>
 
-	<constant name="struts.objectFactory.spring.autoWire.alwaysRespect"	value="true"></constant>
-	<constant name="struts.enable.DynamicMethodInvocation"	value="true"></constant>
-	
+
+	<package name="pkg-account" namespace="/account" extends="base">
+
+		<default-interceptor-ref name="stackbase" />
+		<action name="Decrease" class="org.ngo.web.front.action.AccountAction"
+			method="executeDecr">
+			<!--XHO: no result here, just void is return -->
+		</action>
+		<action name="Increase" class="org.ngo.web.front.action.AccountAction"
+			method="executeIncr">
+		</action>
+		<action name="Create" class="org.ngo.web.front.action.AccountAction"
+			method="executeCreate">
+		</action>
+	</package>
+
+
+
+	<package name="pkg-category" namespace="/category" extends="base">
+		<default-interceptor-ref name="stackbase" />
+		<!-- dynamic method invocation in action -->
+		<action name="dynamic_*" class="org.ngo.web.front.action.DynamicAction"	method="{1}">
+		</action>
+	</package>
+
+	<constant name="struts.objectFactory.spring.autoWire.alwaysRespect"
+		value="true"></constant>
+	<constant name="struts.enable.DynamicMethodInvocation" value="true"></constant>
+
 	<constant name="struts.devMode" value="true" />
-	<constant name="struts.objectFactory" value="spring"/>
-    
+	<constant name="struts.objectFactory" value="spring" />
+
 
 </struts>  
