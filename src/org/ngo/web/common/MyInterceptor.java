@@ -9,9 +9,9 @@ import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.Result;
 import com.opensymphony.xwork2.interceptor.Interceptor;
 
-public class LoggerInterceptor implements Interceptor {
+public class MyInterceptor implements Interceptor {
 
-	private static Logger LOGGER = Logger.getLogger(LoggerInterceptor.class);
+	private static Logger LOGGER = Logger.getLogger(MyInterceptor.class);
 	
 	@Override
 	public void destroy() {
