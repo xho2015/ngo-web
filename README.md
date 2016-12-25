@@ -1,1 +1,1 @@
-ngo java web site.
+NGO Web site which implemented by Struts2 + Spring4 + Hibernate4.

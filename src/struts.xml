@@ -42,12 +42,12 @@
 			<result name="input">/user/login.jsp</result>
 		</action>
 
-		<action name="Logoff" class="com.tutorial.front.action.LogOffAction">
+		<action name="Logoff" class="org.ngo.web.front.action.LogOffAction">
 			<!-- XHO: here we can also use absolute path -->
 			<result name="SUCCESS" type="redirectAction">Welcome</result>
 		</action>
 
-		<action name="Create" class="com.tutorial.front.action.CreateUserAction">
+		<action name="Create" class="org.ngo.web.front.action.CreateUserAction">
 			<result name="input">/user/create.jsp</result>
 		</action>
 	</package>
