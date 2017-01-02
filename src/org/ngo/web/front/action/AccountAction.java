@@ -6,19 +6,27 @@ import java.io.PrintWriter;
 import javax.annotation.Resource;
 
 import org.apache.struts2.ServletActionContext;
+import org.ngo.common.service.ServiceComponent;
+import org.ngo.common.service.ServiceLocator;
 import org.ngo.web.common.PlanTextAction;
 import org.ngo.web.service.AccountService;
 import org.ngo.web.service.UserService;
 import org.ngo.web.service.impl.SimpleAccountService;
 import org.ngo.web.storage.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
+@Component
 public class AccountAction extends PlanTextAction {
 
-	@Resource(name = "simpleAccountService")
+	/*this is the spring annotation - local only version */
+	//@Resource(name = "simpleAccountService")
+	
+	/*HXY: this is the NGO defined service locator annotation with local + remote service injection*/
+	@ServiceComponent(value = "simpleAccountService", address="127.0.0.1")
 	private AccountService accountService;
 
 	private int accountId;

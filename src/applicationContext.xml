@@ -17,9 +17,11 @@
 	<!-- XHO: user bellow to providing the transactional semantics functionality driven by the annotations in the service layer code -->
 	<context:annotation-config />
 	
-	<context:component-scan base-package="org.ngo.web" />
+	<context:component-scan base-package="org.ngo" />
  
- 
+ 	<!--HXY: register application context & servcie locator injection -->
+ 	<bean class="org.ngo.common.service.ServiceInjectBeanPostProcessor"/>
+ 	
 	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
 		destroy-method="close">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
